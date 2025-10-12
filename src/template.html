@@ -4,9 +4,125 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Template Webpack</title>
+    <!--  FONT AWESOME ICONS  -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!--  FONT AWESOME ICONS  -->
   </head>
   <body>
-    <h1>Template Webpack</h1>
-    <h2>Esto es una prueba del Template Webpack</h2>
+    <div class="container">
+      <aside class="aside flex-columna">
+        <div>
+          <h2>Proyectos</h2>
+          <button>
+            <i class="fa-solid fa-plus"></i>
+          </button>
+        </div>
+        <hr class="aside-divisor" />
+        <ul class="flex-columna">
+          <li>
+            <span>Proyecto Default</span>
+            <button>
+              <i class="fa-solid fa-trash"></i>
+            </button>
+          </li>
+          <li>
+            <span>Proyecto Numero 1</span>
+            <button>
+              <i class="fa-solid fa-trash"></i>
+            </button>
+          </li>
+          <li>
+            <span>Proyecto Numero 2</span>
+            <button>
+              <i class="fa-solid fa-trash"></i>
+            </button>
+          </li>
+        </ul>
+      </aside>
+      <main class="flex-columna">
+        <header class="main-header">
+          <div class="flex-columna">
+            <h2>Titulo del Proyecto</h2>
+            <p>
+              Descripcion del Proyecto: Lorem, ipsum dolor sit amet consectetur
+              adipisicing elit. Omnis dolore, assumenda atque reiciendis nostrum
+              velit?
+            </p>
+          </div>
+          <button>
+            <span>
+              <i class="fa-solid fa-pen-to-square"></i>
+            </span>
+          </button>
+        </header>
+        <hr class="main-divisor" />
+        <section class="main-content flex-columna">
+          <div>
+            <h3>Tareas</h3>
+            <button>
+              <i class="fa-solid fa-plus"></i>
+            </button>
+          </div>
+          <table class="main-table">
+            <tbody class="flex-columna">
+              <tr>
+                <td>
+                  <input type="checkbox" name="" id="" />
+                </td>
+                <td class="tarea-titulo">Tarea Default</td>
+
+                <td>
+                  <i class="fa-solid fa-eye"></i>
+                </td>
+                <td>
+                  <i class="fa-solid fa-pen-to-square"></i>
+                </td>
+                <td>
+                  <i class="fa-solid fa-trash"></i>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input type="checkbox" name="" id="" />
+                </td>
+                <td class="tarea-titulo">Tarea Default</td>
+
+                <td>
+                  <i class="fa-solid fa-eye"></i>
+                </td>
+                <td>
+                  <i class="fa-solid fa-pen-to-square"></i>
+                </td>
+                <td>
+                  <i class="fa-solid fa-trash"></i>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <input type="checkbox" name="" id="" />
+                </td>
+                <td class="tarea-titulo">Tarea Default</td>
+
+                <td>
+                  <i class="fa-solid fa-eye"></i>
+                </td>
+                <td>
+                  <i class="fa-solid fa-pen-to-square"></i>
+                </td>
+                <td>
+                  <i class="fa-solid fa-trash"></i>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+      </main>
+    </div>
   </body>
 </html>
