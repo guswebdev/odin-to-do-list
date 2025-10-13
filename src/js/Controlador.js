@@ -1,8 +1,37 @@
 import { crearProyecto } from "./crearProyecto.js";
 import { crearTarea } from "./crearTarea.js";
 
+import { display } from "./Display.js";
+import { click } from "./Click.js";
+
 class Controlador {
+  data = [];
+
+  mostrarData() {
+    console.log(this.data);
+  }
+
   domContentLoaded() {
+    const proyectoDefault = crearProyecto(
+      "Projecto Default",
+      "Descripcion Default"
+    );
+    controlador.data.push(proyectoDefault);
+
+    const primerProyecto = crearProyecto(
+      "Universidad",
+      "Aca voy a escribir mis tareas de la facu"
+    );
+    controlador.data.push(primerProyecto);
+
+    const segundoProyecto = crearProyecto(
+      "Gym",
+      "Aca voy a escribir mis rutinas semanales"
+    );
+    controlador.data.push(segundoProyecto);
+
+    controlador.mostrarData()
+    /*
     console.log("Trabajo con poyectos");
     console.log("**************************************************");
     //CREACION DE PROYECTOS
@@ -105,11 +134,47 @@ class Controlador {
     segundaTarea.getTarea();
     //MOSTRAR PROYECTOS FINALES
     // ------------------------------------------------------------
+    */
+  }
+
+  click(e) {
+    if (e.target.dataset.btn === display.$btnAddProyecto.dataset.btn) {
+      click.agregarProyecto();
+    }
+    if (e.target.dataset.btn === display.$btnDeleteProyecto.dataset.btn) {
+      click.eliminarProyecto();
+    }
+    if (e.target.dataset.btn === display.$btnEditProyecto.dataset.btn) {
+      click.editarProyecto();
+    }
+    if (e.target.dataset.btn === display.$btnAddTarea.dataset.btn) {
+      click.agregarTarea();
+    }
+    if (e.target.dataset.btn === display.$btnViewTarea.dataset.btn) {
+      click.verTarea();
+    }
+    if (e.target.dataset.btn === display.$btnEditTarea.dataset.btn) {
+      click.editarTarea();
+    }
+    if (e.target.dataset.btn === display.$btnDeleteTarea.dataset.btn) {
+      click.eliminarTarea();
+    }
+    if (e.target.dataset.btn === display.$btnCerrarModalProyecto.dataset.btn) {
+      click.cerrarModalProyecto();
+    }
+    if (e.target.dataset.btn === display.$btnCerrarModalTarea.dataset.btn) {
+      click.cerrarModalTarea();
+    }
+    if (e.target.dataset.btn === display.$btnCerrarModalInfoTarea.dataset.btn) {
+      click.cerrarModalInfoTarea();
+    }
   }
 }
 
 const controlador = new Controlador();
 
 document.addEventListener("DOMContentLoaded", controlador.domContentLoaded);
+document.addEventListener("click", controlador.click);
 
+//controlador.mostrarData();
 export { controlador };

@@ -19,8 +19,9 @@
       <aside class="aside flex-columna">
         <div>
           <h2>Proyectos</h2>
+
           <button>
-            <i class="fa-solid fa-plus"></i>
+            <i class="fa-solid fa-plus" data-btn="addProyecto"></i>
           </button>
         </div>
         <hr class="aside-divisor" />
@@ -28,13 +29,13 @@
           <li>
             <span>Proyecto Default</span>
             <button>
-              <i class="fa-solid fa-trash"></i>
+              <i class="fa-solid fa-trash" data-btn="deleteProyecto"></i>
             </button>
           </li>
           <li>
             <span>Proyecto Numero 1</span>
             <button>
-              <i class="fa-solid fa-trash"></i>
+              <i class="fa-solid fa-trash" data-btn="deleteProyecto"></i>
             </button>
           </li>
           <li>
@@ -57,7 +58,7 @@
           </div>
           <button>
             <span>
-              <i class="fa-solid fa-pen-to-square"></i>
+              <i class="fa-solid fa-pen-to-square" data-btn="editProyecto"></i>
             </span>
           </button>
         </header>
@@ -65,8 +66,9 @@
         <section class="main-content flex-columna">
           <div>
             <h3>Tareas</h3>
+
             <button>
-              <i class="fa-solid fa-plus"></i>
+              <i class="fa-solid fa-plus" data-btn="addTarea"></i>
             </button>
           </div>
           <table class="main-table">
@@ -78,13 +80,13 @@
                 <td class="tarea-titulo">Tarea Default</td>
 
                 <td>
-                  <i class="fa-solid fa-eye"></i>
+                  <i class="fa-solid fa-eye" data-btn="viewTarea"></i>
                 </td>
                 <td>
-                  <i class="fa-solid fa-pen-to-square"></i>
+                  <i class="fa-solid fa-pen-to-square" data-btn="editTarea"></i>
                 </td>
                 <td>
-                  <i class="fa-solid fa-trash"></i>
+                  <i class="fa-solid fa-trash" data-btn="deleteTarea"></i>
                 </td>
               </tr>
               <tr>
@@ -122,6 +124,40 @@
             </tbody>
           </table>
         </section>
+        <!--VENTANAS MODALES-->
+        <!--VENTANA MODAL CREAR Y MODIFICAR PROYECTOS-->
+        <dialog data-dialog="crearProyecto">
+          <button>
+            <i class="fa-solid fa-circle-xmark" data-btn="cerrarModalProyecto"></i>
+          </button>
+          <form action="" class="form-crear-proyecto flex-columna">
+            <h2>Crear Proyecto</h2>
+            <article class="container-proyecto-titulo flex-columna">
+              <label for="tituloProyecto">Titulo del proyecto</label>
+              <input type="text" name="tituloProyecto" id="tituloProyecto" />
+            </article>
+            <article class="container-proyecto-descripcion flex-columna">
+              <label for="descripcionProyecto">Descripcion del proyecto</label>
+              <input
+                type="text"
+                name="descripcionProyecto"
+                id="descripcionProyecto"
+              />
+            </article>
+            <button type="submit">Crear Proyecto</button>
+          </form>
+        </dialog>
+        <!--VENTANA MODAL CREAR Y MODIFICAR TAREAS-->
+        <dialog data-dialog="crearTarea">
+          <button autofocus data-btn="cerrarModalTarea">Close</button>
+          <p>Aca tengo que agregar el formulario para crear una tarea</p>
+        </dialog>
+        <!--VENTANA MODAL MOSTRAR INFORMACION TAREAS-->
+        <dialog data-dialog="verTarea">
+          <button autofocus data-btn="cerrarModalInfoTarea">Close</button>
+          <p>Aca deberia mostrar toda la informacion de la tarea</p>
+        </dialog>
+        <!--VENTANAS MODALES-->
       </main>
     </div>
   </body>
