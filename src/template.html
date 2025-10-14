@@ -128,16 +128,19 @@
         <!--VENTANA MODAL CREAR Y MODIFICAR PROYECTOS-->
         <dialog data-dialog="crearProyecto">
           <button>
-            <i class="fa-solid fa-circle-xmark" data-btn="cerrarModalProyecto"></i>
+            <i
+              class="fa-solid fa-circle-xmark"
+              data-btn="cerrarModalProyecto"
+            ></i>
           </button>
-          <form action="" class="form-crear-proyecto flex-columna">
+          <form action="" class="form-modal flex-columna">
             <h2>Crear Proyecto</h2>
             <article class="container-proyecto-titulo flex-columna">
-              <label for="tituloProyecto">Titulo del proyecto</label>
+              <label for="tituloProyecto">Titulo</label>
               <input type="text" name="tituloProyecto" id="tituloProyecto" />
             </article>
             <article class="container-proyecto-descripcion flex-columna">
-              <label for="descripcionProyecto">Descripcion del proyecto</label>
+              <label for="descripcionProyecto">Descripcion</label>
               <input
                 type="text"
                 name="descripcionProyecto"
@@ -149,13 +152,99 @@
         </dialog>
         <!--VENTANA MODAL CREAR Y MODIFICAR TAREAS-->
         <dialog data-dialog="crearTarea">
-          <button autofocus data-btn="cerrarModalTarea">Close</button>
-          <p>Aca tengo que agregar el formulario para crear una tarea</p>
+          <button>
+            <i class="fa-solid fa-circle-xmark" data-btn="cerrarModalTarea"></i>
+          </button>
+          <form action="" class="form-modal flex-columna">
+            <h2>Crear Tarea</h2>
+            <article class="container-tarea-titulo flex-columna">
+              <label for="tituloTarea">Titulo</label>
+              <input type="text" name="tituloTarea" id="tituloTarea" />
+            </article>
+            <article class="container-tarea-descripcion flex-columna">
+              <label for="descripcionTarea">Descripcion</label>
+              <input
+                type="text"
+                name="descripcionTarea"
+                id="descripcionTarea"
+              />
+            </article>
+            <article class="container-tarea-prioridad flex-columna">
+              <p>Seleccione la prioridad:</p>
+              <div>
+                <input
+                  type="radio"
+                  id="opcion-baja"
+                  name="form-prioridad"
+                  value="baja"
+                />
+                <label for="opcion-baja">Baja</label>
+              </div>
+              <div>
+                <input
+                  type="radio"
+                  id="opcion-media"
+                  name="form-prioridad"
+                  value="media"
+                />
+                <label for="opcion-media">Media</label>
+              </div>
+              <div>
+                <input
+                  type="radio"
+                  id="opcion-alta"
+                  name="form-prioridad"
+                  value="alta"
+                />
+                <label for="opcion-alta">Alta</label>
+              </div>
+            </article>
+            <article class="container-tarea-fecha flex-columna">
+              <label for="fechaInput">Ingresa una Fecha de vencimiento:</label>
+              <input type="date" id="fechaInput" />
+            </article>
+            <button type="submit">Crear Tarea</button>
+          </form>
         </dialog>
         <!--VENTANA MODAL MOSTRAR INFORMACION TAREAS-->
         <dialog data-dialog="verTarea">
-          <button autofocus data-btn="cerrarModalInfoTarea">Close</button>
-          <p>Aca deberia mostrar toda la informacion de la tarea</p>
+          <button>
+            <i
+              class="fa-solid fa-circle-xmark"
+              data-btn="cerrarModalInfoTarea"
+            ></i>
+          </button>
+          <article class="container-info-tarea flex-columna">
+            <p>
+              Titulo:
+              <span>
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+              </span>
+            </p>
+            <p>
+              Descripcion:
+              <span>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam
+                saepe explicabo asperiores ratione quis sapiente!
+              </span>
+            </p>
+            <p>
+              Prioridad:
+              <span> Media </span>
+            </p>
+            <p>
+              Fecha de Vencimiento:
+              <span> 16/11/2025 </span>
+            </p>
+            <p>
+              Estado:
+              <span> Tarea Incompleta </span>
+            </p>
+            <p>
+              Proyecto:
+              <span> Proyecto Default </span>
+            </p>
+          </article>
         </dialog>
         <!--VENTANAS MODALES-->
       </main>

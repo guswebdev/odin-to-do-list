@@ -65,6 +65,10 @@ dialog:open::backdrop {
   animation: backdrop-fade-in 0.7s ease-out forwards;
 }
 
+.container-info-tarea p:first-child{
+  padding-top: 1rem;
+}
+
 body {
   position: relative;
   width: 100%;
@@ -244,11 +248,12 @@ main {
 /* MAIN */
 
 /* FORMULARIO MODAL CREAR Y EDITAR PROYECTO */
-.form-crear-proyecto input {
+
+.form-modal input {
   padding: 0.5rem;
 }
 
-.form-crear-proyecto button {
+.form-modal button {
   display: inline-block;
   padding: 0.75rem;
   font-weight: bold;
@@ -258,12 +263,13 @@ main {
   background-color: var(--color-violeta);
   cursor: pointer;
 }
-.form-crear-proyecto button:hover {
+.form-modal button:hover {
   color: var(--color-violeta);
   background-color: var(--color-blanco);
   border: var(--color-violeta) thin solid;
 }
 /* FORMULARIO MODAL CREAR Y EDITAR PROYECTO */
+
 
 @keyframes fade-in {
   0% {
