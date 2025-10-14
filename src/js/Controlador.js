@@ -3,6 +3,7 @@ import { crearTarea } from "./crearTarea.js";
 
 import { display } from "./Display.js";
 import { click } from "./Click.js";
+import { submit } from "./Submit.js";
 
 class Controlador {
   data = [];
@@ -30,7 +31,7 @@ class Controlador {
     );
     controlador.data.push(segundoProyecto);
 
-    controlador.mostrarData()
+    controlador.mostrarData();
     /*
     console.log("Trabajo con poyectos");
     console.log("**************************************************");
@@ -169,12 +170,23 @@ class Controlador {
       click.cerrarModalInfoTarea();
     }
   }
+
+  submit(e) {
+    e.preventDefault();
+    if (e.target.id === display.$formProyecto.id) {
+      submit.enviarFormularioProyecto();
+    }
+    if (e.target.id === display.$formTarea.id) {
+      submit.enviarFormularioTarea();
+    }
+  }
 }
 
 const controlador = new Controlador();
 
 document.addEventListener("DOMContentLoaded", controlador.domContentLoaded);
 document.addEventListener("click", controlador.click);
+document.addEventListener("submit", controlador.submit);
 
 //controlador.mostrarData();
 export { controlador };

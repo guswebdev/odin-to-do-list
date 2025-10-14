@@ -21,6 +21,9 @@ class Display {
   $btnEditTarea = document.querySelector(`[data-btn="editTarea"]`);
   $btnDeleteTarea = document.querySelector(`[data-btn="deleteTarea"]`);
 
+  $formProyecto = document.querySelector("#form-proyecto");
+  $formTarea = document.querySelector("#form-tarea");
+
   mostrarElemento() {
     console.log(this.$btnAddTarea.dataset.btn);
   }
