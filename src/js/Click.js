@@ -3,10 +3,10 @@ import { display } from "./Display.js";
 class Click {
   agregarProyecto() {
     console.log("AGREGAR NUEVO PROYECTO");
-    display.$dialogCrearProyecto.showModal()
+    display.abrirModalProyecto()
   }
   cerrarModalProyecto(){
-    display.$dialogCrearProyecto.close()
+    display.cerrarModalProyecto()
   }
   eliminarProyecto() {
     console.log("ELIMINAR PROYECTO");

@@ -24,8 +24,29 @@ class Display {
   $formProyecto = document.querySelector("#form-proyecto");
   $formTarea = document.querySelector("#form-tarea");
 
+
   mostrarElemento() {
     console.log(this.$btnAddTarea.dataset.btn);
+  }
+
+  reiniciarFormProyecto() {
+    this.$formProyecto.reset();
+  }
+  reiniciarFormTarea() {
+    this.$formTarea.reset();
+  }
+
+  abrirModalProyecto() {
+    this.$dialogCrearProyecto.showModal();
+  }
+  cerrarModalProyecto() {
+    this.$dialogCrearProyecto.close();
+  }
+  abrirModalTarea() {
+    this.$dialogCrearTarea.showModal();
+  }
+  cerrarModalTarea() {
+    this.$dialogCrearTarea.close();
   }
 }
 

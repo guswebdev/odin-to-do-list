@@ -1,11 +1,11 @@
 class Tarea {
-  constructor(titulo, descripcion, fechaVencimiento, prioridad, estado) {
+  constructor(titulo, descripcion, prioridad, fechaVencimiento) {
     this.id = crypto.randomUUID();
     this.titulo = titulo;
     this.descripcion = descripcion;
     this.fechaVencimiento = fechaVencimiento;
     this.prioridad = prioridad;
-    this.estado = estado;
+    this.estado = false;
   }
 
   getTarea() {

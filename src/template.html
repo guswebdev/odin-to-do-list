@@ -175,8 +175,9 @@
                 <input
                   type="radio"
                   id="opcion-baja"
-                  name="form-prioridad"
+                  name="formPrioridad"
                   value="baja"
+                  checked
                 />
                 <label for="opcion-baja">Baja</label>
               </div>
@@ -184,7 +185,7 @@
                 <input
                   type="radio"
                   id="opcion-media"
-                  name="form-prioridad"
+                  name="formPrioridad"
                   value="media"
                 />
                 <label for="opcion-media">Media</label>
@@ -193,7 +194,7 @@
                 <input
                   type="radio"
                   id="opcion-alta"
-                  name="form-prioridad"
+                  name="formPrioridad"
                   value="alta"
                 />
                 <label for="opcion-alta">Alta</label>
@@ -201,7 +202,7 @@
             </article>
             <article class="container-tarea-fecha flex-columna">
               <label for="fechaInput">Ingresa una Fecha de vencimiento:</label>
-              <input type="date" id="fechaInput" />
+              <input type="date" id="fechaInput" name="fechaInput" />
             </article>
             <button type="submit">Crear Tarea</button>
           </form>

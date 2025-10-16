@@ -1,18 +1,11 @@
-import { crearProyecto } from "./crearProyecto.js";
-import { crearTarea } from "./crearTarea.js";
 
 import { display } from "./Display.js";
 import { click } from "./Click.js";
 import { submit } from "./Submit.js";
 
 class Controlador {
-  data = [];
-
-  mostrarData() {
-    console.log(this.data);
-  }
-
   domContentLoaded() {
+    /*
     const proyectoDefault = crearProyecto(
       "Projecto Default",
       "Descripcion Default"
@@ -32,6 +25,7 @@ class Controlador {
     controlador.data.push(segundoProyecto);
 
     controlador.mostrarData();
+    */
     /*
     console.log("Trabajo con poyectos");
     console.log("**************************************************");
@@ -188,5 +182,4 @@ document.addEventListener("DOMContentLoaded", controlador.domContentLoaded);
 document.addEventListener("click", controlador.click);
 document.addEventListener("submit", controlador.submit);
 
-//controlador.mostrarData();
 export { controlador };
