@@ -1,41 +1,51 @@
 import { crearProyecto } from "./crearProyecto.js";
 import { crearTarea } from "./crearTarea.js";
-import { data } from "./Data.js";
+import { proyectos } from "./Data.js";
 import { display } from "./Display.js";
 
 class Submit {
-  enviarFormularioProyecto() {
-    console.log("ENVIAR FORMULARIO DE PROYECTO");
+  crearProyecto() {
+    const formData = new FormData(display.$formProyecto);
+    const data = Object.fromEntries(formData);
+
+    const nuevoProyecto = crearProyecto(
+      data.tituloProyecto,
+      data.descripcionProyecto
+    );
+
+    proyectos.idProyectoVista = nuevoProyecto.id;
+
+    proyectos.agregarProyectos(nuevoProyecto);
+
+    display.cerrarModalProyecto();
+    display.reiniciarFormProyecto();
+
+    display.limpiarProyectos();
+    display.renderProyectos();
+
+    display.limpiarHeader();
+    display.renderHeader();
+    console.log(proyectos.datos);
+  }
+
+  editarProyecto(id) {
 
     const formData = new FormData(display.$formProyecto);
-    const datosFormulario = Object.fromEntries(formData);
+    const data = Object.fromEntries(formData);
 
-    let datosProyecto = crearProyecto(
-      datosFormulario.tituloProyecto,
-      datosFormulario.descripcionProyecto
-    );
+    proyectos.editarProyectos(data, id);
 
-    data.agregarData(datosProyecto);
-    data.mostrarData();
-    display.reiniciarFormProyecto();
+    proyectos.idProyectoVista = id;
+
     display.cerrarModalProyecto();
-  }
-  enviarFormularioTarea() {
-    console.log("ENVIAR FORMULARIO DE TAREA");
+    display.reiniciarFormProyecto();
 
-    const formData = new FormData(display.$formTarea);
-    const datosFormulario = Object.fromEntries(formData);
+    display.limpiarProyectos();
+    display.renderProyectos();
 
-    let datosTarea = crearTarea(
-      datosFormulario.tituloTarea,
-      datosFormulario.descripcionTarea,
-      datosFormulario.formPrioridad,
-      datosFormulario.fechaInput
-    );
-    data.agregarData(datosTarea);
-    data.mostrarData();
-    display.reiniciarFormTarea();
-    display.cerrarModalTarea();
+    display.limpiarHeader();
+    display.renderHeader();
+    console.log(proyectos.datos);
   }
 }
 

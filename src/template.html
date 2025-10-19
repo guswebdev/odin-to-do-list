@@ -25,7 +25,8 @@
           </button>
         </div>
         <hr class="aside-divisor" />
-        <ul class="flex-columna">
+        <ul class="flex-columna" data-container-proyectos>
+          <!--
           <li>
             <span>Proyecto Default</span>
             <button>
@@ -44,33 +45,21 @@
               <i class="fa-solid fa-trash"></i>
             </button>
           </li>
+          -->
         </ul>
       </aside>
       <main class="flex-columna">
-        <header class="main-header">
-          <div class="flex-columna">
-            <h2>Titulo del Proyecto</h2>
-            <p>
-              Descripcion del Proyecto: Lorem, ipsum dolor sit amet consectetur
-              adipisicing elit. Omnis dolore, assumenda atque reiciendis nostrum
-              velit?
-            </p>
-          </div>
-          <button>
-            <span>
-              <i class="fa-solid fa-pen-to-square" data-btn="editProyecto"></i>
-            </span>
-          </button>
+        <header class="main-header" data-header-proyectos>
+          <p data-header-inicio class="d-block">
+            Crea un nuevo proyecto para comenzar
+          </p>
         </header>
         <hr class="main-divisor" />
-        <section class="main-content flex-columna">
-          <div>
-            <h3>Tareas</h3>
-
-            <button>
-              <i class="fa-solid fa-plus" data-btn="addTarea"></i>
-            </button>
-          </div>
+        <section class="main-content flex-columna" data-main-proyectos>
+          <p data-main-inicio class="d-block">
+            Aca apareceran las tareas de cada proyecto
+          </p>
+          <!--
           <table class="main-table">
             <tbody class="flex-columna">
               <tr>
@@ -123,6 +112,7 @@
               </tr>
             </tbody>
           </table>
+          -->
         </section>
         <!--VENTANAS MODALES-->
         <!--VENTANA MODAL CREAR Y MODIFICAR PROYECTOS-->
@@ -134,7 +124,7 @@
             ></i>
           </button>
           <form action="" id="form-proyecto" class="form-modal flex-columna">
-            <h2>Crear Proyecto</h2>
+            <h2></h2>
             <article class="container-proyecto-titulo flex-columna">
               <label for="tituloProyecto">Titulo</label>
               <input type="text" name="tituloProyecto" id="tituloProyecto" />
@@ -147,7 +137,7 @@
                 id="descripcionProyecto"
               />
             </article>
-            <button type="submit">Crear Proyecto</button>
+            <button type="submit"></button>
           </form>
         </dialog>
         <!--VENTANA MODAL CREAR Y MODIFICAR TAREAS-->
@@ -250,5 +240,58 @@
         <!--VENTANAS MODALES-->
       </main>
     </div>
+    <template id="template-proyectos-items">
+      <li>
+        <span></span>
+        <button>
+          <i class="fa-solid fa-trash" data-btn="deleteProyecto"></i>
+        </button>
+      </li>
+    </template>
+    <template id="template-proyectos-header">
+      <div class="flex-columna">
+        <h2>Titulo del Proyecto</h2>
+        <p>
+          Descripcion del Proyecto: Lorem, ipsum dolor sit amet consectetur
+          adipisicing elit. Omnis dolore, assumenda atque reiciendis nostrum
+          velit?
+        </p>
+      </div>
+      <button>
+        <span>
+          <i class="fa-solid fa-pen-to-square" data-btn="editProyecto"></i>
+        </span>
+      </button>
+    </template>
+    <template id="template-proyectos-main-header">
+      <div>
+        <h3>Tareas</h3>
+        <button>
+          <i class="fa-solid fa-plus" data-btn="addTarea"></i>
+        </button>
+      </div>
+    </template>
+    <template id="template-proyectos-main-body">
+      <table class="main-table">
+        <tbody class="flex-columna">
+          <tr>
+            <td>
+              <input type="checkbox" name="proyecto-estado" id="proyecto-estado" />
+            </td>
+            <td class="tarea-titulo" data-titulo></td>
+
+            <td>
+              <i class="fa-solid fa-eye" data-btn="viewTarea"></i>
+            </td>
+            <td>
+              <i class="fa-solid fa-pen-to-square" data-btn="editTarea"></i>
+            </td>
+            <td>
+              <i class="fa-solid fa-trash" data-btn="deleteTarea"></i>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </template>
   </body>
 </html>

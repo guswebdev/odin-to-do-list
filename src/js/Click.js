@@ -1,40 +1,32 @@
 import { display } from "./Display.js";
+import { proyectos } from "./Data.js";
 
 class Click {
-  agregarProyecto() {
-    console.log("AGREGAR NUEVO PROYECTO");
-    display.abrirModalProyecto()
+  crearProyecto() {
+    display.crearFormProyecto();
+    display.abrirModalProyecto();
   }
-  cerrarModalProyecto(){
-    display.cerrarModalProyecto()
+
+  cambiarHeader(id) {
+    proyectos.idProyectoVista = id;
+
+    display.limpiarHeader();
+    display.renderHeader();
   }
-  eliminarProyecto() {
-    console.log("ELIMINAR PROYECTO");
+
+  editarProyecto(id) {
+    display.editarFormProyecto(id);
+    display.abrirModalProyecto();
   }
-  editarProyecto() {
-    console.log("EDITAR PROYECTO");
-    display.$dialogCrearProyecto.showModal()
-  }
-  agregarTarea() {
-    console.log("CREAR NUEVA TAREA");
-    display.$dialogCrearTarea.showModal()
-  }
-  cerrarModalTarea(){
-    display.$dialogCrearTarea.close()
-  }
-  verTarea() {
-    console.log("VER TAREA");
-    display.$dialogVerTarea.showModal()
-  }
-  cerrarModalInfoTarea(){
-    display.$dialogVerTarea.close()
-  }
-  eliminarTarea() {
-    console.log("ELIMINAR TAREA");
-  }
-  editarTarea() {
-    console.log("EDITAR TAREA");
-    display.$dialogCrearTarea.showModal()
+
+  borrarProyecto(id) {
+    proyectos.eliminarProyecto(id);
+    console.log(proyectos.datos);
+    display.limpiarProyectos();
+    display.renderProyectos();
+
+    display.limpiarHeader();
+    display.renderHeader();
   }
 }
 

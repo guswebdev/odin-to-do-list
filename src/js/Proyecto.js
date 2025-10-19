@@ -3,6 +3,7 @@ class Proyecto {
     this.id = crypto.randomUUID();
     this.titulo = titulo;
     this.descripcion = descripcion;
+    this.tareas = []
   }
 
   getProyecto() {

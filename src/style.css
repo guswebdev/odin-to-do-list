@@ -19,6 +19,10 @@ ul {
   list-style: none;
 }
 
+a {
+  text-decoration: none;
+}
+
 dialog {
   position: fixed; /* Posiciona el diálogo de forma fija en la ventana */
   top: 0;
@@ -65,7 +69,7 @@ dialog:open::backdrop {
   animation: backdrop-fade-in 0.7s ease-out forwards;
 }
 
-.container-info-tarea p:first-child{
+.container-info-tarea p:first-child {
   padding-top: 1rem;
 }
 
@@ -127,6 +131,7 @@ main {
 
 /* ASIDE */
 .aside {
+  min-height: 40vh;
   padding: 1rem;
 }
 
@@ -145,6 +150,10 @@ main {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.aside li a {
+  color: var(--color-blanco);
 }
 
 .aside button {
@@ -270,6 +279,20 @@ main {
 }
 /* FORMULARIO MODAL CREAR Y EDITAR PROYECTO */
 
+.d-none {
+  display: none;
+}
+
+.d-block {
+  display: block;
+}
+
+.d-flex {
+  display: flex;
+}
+.d-grid {
+  display: grid;
+}
 
 @keyframes fade-in {
   0% {
