@@ -12,6 +12,9 @@ class Click {
 
     display.limpiarHeader();
     display.renderHeader();
+
+    display.limpiarMainBody();
+    display.renderMainBody();
   }
 
   editarProyecto(id) {
@@ -25,8 +28,26 @@ class Click {
     display.limpiarProyectos();
     display.renderProyectos();
 
-    display.limpiarHeader();
-    display.renderHeader();
+    if (proyectos.datos.length === 0) {
+      display.limpiarHeader();
+      display.agregarMensajeHeader();
+      display.agregarMensajeMain();
+    } else {
+      display.limpiarHeader();
+      display.renderHeader();
+    }
+  }
+  cerrarModalProyecto() {
+    display.cerrarModalProyecto();
+  }
+  cerrarModalTarea() {
+    display.cerrarModalTarea();
+  }
+
+  crearTarea() {
+    console.log("CREAR TAREA");
+    display.crearFormTarea();
+    display.abrirModalTarea();
   }
 }
 

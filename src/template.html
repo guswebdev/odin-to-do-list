@@ -25,28 +25,7 @@
           </button>
         </div>
         <hr class="aside-divisor" />
-        <ul class="flex-columna" data-container-proyectos>
-          <!--
-          <li>
-            <span>Proyecto Default</span>
-            <button>
-              <i class="fa-solid fa-trash" data-btn="deleteProyecto"></i>
-            </button>
-          </li>
-          <li>
-            <span>Proyecto Numero 1</span>
-            <button>
-              <i class="fa-solid fa-trash" data-btn="deleteProyecto"></i>
-            </button>
-          </li>
-          <li>
-            <span>Proyecto Numero 2</span>
-            <button>
-              <i class="fa-solid fa-trash"></i>
-            </button>
-          </li>
-          -->
-        </ul>
+        <ul class="flex-columna" data-container-proyectos></ul>
       </aside>
       <main class="flex-columna">
         <header class="main-header" data-header-proyectos>
@@ -59,60 +38,6 @@
           <p data-main-inicio class="d-block">
             Aca apareceran las tareas de cada proyecto
           </p>
-          <!--
-          <table class="main-table">
-            <tbody class="flex-columna">
-              <tr>
-                <td>
-                  <input type="checkbox" name="" id="" />
-                </td>
-                <td class="tarea-titulo">Tarea Default</td>
-
-                <td>
-                  <i class="fa-solid fa-eye" data-btn="viewTarea"></i>
-                </td>
-                <td>
-                  <i class="fa-solid fa-pen-to-square" data-btn="editTarea"></i>
-                </td>
-                <td>
-                  <i class="fa-solid fa-trash" data-btn="deleteTarea"></i>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <input type="checkbox" name="" id="" />
-                </td>
-                <td class="tarea-titulo">Tarea Default</td>
-
-                <td>
-                  <i class="fa-solid fa-eye"></i>
-                </td>
-                <td>
-                  <i class="fa-solid fa-pen-to-square"></i>
-                </td>
-                <td>
-                  <i class="fa-solid fa-trash"></i>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <input type="checkbox" name="" id="" />
-                </td>
-                <td class="tarea-titulo">Tarea Default</td>
-
-                <td>
-                  <i class="fa-solid fa-eye"></i>
-                </td>
-                <td>
-                  <i class="fa-solid fa-pen-to-square"></i>
-                </td>
-                <td>
-                  <i class="fa-solid fa-trash"></i>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          -->
         </section>
         <!--VENTANAS MODALES-->
         <!--VENTANA MODAL CREAR Y MODIFICAR PROYECTOS-->
@@ -146,7 +71,7 @@
             <i class="fa-solid fa-circle-xmark" data-btn="cerrarModalTarea"></i>
           </button>
           <form action="" id="form-tarea" class="form-modal flex-columna">
-            <h2>Crear Tarea</h2>
+            <h2></h2>
             <article class="container-tarea-titulo flex-columna">
               <label for="tituloTarea">Titulo</label>
               <input type="text" name="tituloTarea" id="tituloTarea" />
@@ -270,13 +195,19 @@
           <i class="fa-solid fa-plus" data-btn="addTarea"></i>
         </button>
       </div>
+      <table class="main-table">
+        <tbody class="flex-columna" data-tbody></tbody>
+      </table>
     </template>
     <template id="template-proyectos-main-body">
-      <table class="main-table">
-        <tbody class="flex-columna">
+      
           <tr>
             <td>
-              <input type="checkbox" name="proyecto-estado" id="proyecto-estado" />
+              <input
+                type="checkbox"
+                name="proyecto-estado"
+                id="proyecto-estado"
+              />
             </td>
             <td class="tarea-titulo" data-titulo></td>
 
@@ -290,8 +221,7 @@
               <i class="fa-solid fa-trash" data-btn="deleteTarea"></i>
             </td>
           </tr>
-        </tbody>
-      </table>
+        
     </template>
   </body>
 </html>

@@ -128,6 +128,22 @@ class Data {
       }
     }
   }
+
+  cambiarEstado(idProyecto, idTarea) {
+    const objetoEncontrado = this.obtenerObjetoId(idProyecto);
+
+    if (objetoEncontrado) {
+      const elementoEncontrado = this.obtenerTareaId(
+        objetoEncontrado.tareas,
+        idTarea
+      );
+
+      if (elementoEncontrado) {
+        //this.asignarDatosTareas(elementoEncontrado, dato);
+        elementoEncontrado.estado = !elementoEncontrado.estado;
+      }
+    }
+  }
 }
 
 const proyectos = new Data();

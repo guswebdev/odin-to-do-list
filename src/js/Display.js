@@ -14,6 +14,9 @@ class Display {
   $btnEditProyecto;
   $btnsBorrarProyecto;
   $btnAddProyecto = d.querySelector(`[data-btn="addProyecto"]`);
+  $btnCerrarModalProyecto = d.querySelector(`[data-btn="cerrarModalProyecto"]`);
+  $btnCerrarModalTarea = d.querySelector(`[data-btn="cerrarModalTarea"]`);
+  $inputsCheckbox;
 
   $templateProyectosItems = d.querySelector("#template-proyectos-items")
     .content;
@@ -29,38 +32,16 @@ class Display {
   //Atributos
 
   $dialogCrearProyecto = d.querySelector(`[data-dialog="crearProyecto"]`);
-  $btnCerrarModalProyecto = d.querySelector(`[data-btn="cerrarModalProyecto"]`);
-  $btnDeleteProyecto;
-  $btnAddTarea = d.querySelector(`[data-btn="addTarea"]`);
   $dialogCrearTarea = d.querySelector(`[data-dialog="crearTarea"]`);
-  $btnCerrarModalTarea = d.querySelector(`[data-btn="cerrarModalTarea"]`);
+  $btnAddTarea;
+
+  $btnEditTarea;
+  $btnDeleteTarea;
   $btnViewTarea;
   $dialogVerTarea = d.querySelector(`[data-dialog="verTarea"]`);
   $btnCerrarModalInfoTarea = d.querySelector(
     `[data-btn="cerrarModalInfoTarea"]`
   );
-
-  $btnEditTarea;
-  $btnDeleteTarea;
-
-  obtenerElementosVerTareas() {
-    return (this.$btnViewTarea = d.querySelectorAll(`[data-btn="viewTarea"]`));
-  }
-  obtenerElementosEditarTareas() {
-    return (this.$btnEditTarea = d.querySelectorAll(`[data-btn="editTarea"]`));
-  }
-  obtenerElementosEliminarTareas() {
-    return (this.$btnDeleteTarea = d.querySelectorAll(
-      `[data-btn="deleteTarea"]`
-    ));
-  }
-
-  abrirModalTarea() {
-    this.$dialogCrearTarea.showModal();
-  }
-  cerrarModalTarea() {
-    this.$dialogCrearTarea.close();
-  }
 
   //Metodos Publicos
   renderProyectos() {
@@ -91,14 +72,7 @@ class Display {
   }
 
   renderHeader() {
-    if (proyectos.datos.length === 0) {
-      d.querySelector(`[data-header-inicio]`).classList.add("d-block");
-    } else {
-      //HAY QUE PROBAR CUANDO HAY DATOS Y SE VACIAN LOS PROYECTOS
-      //EFECTIVAMENTE NO FUNCIONA
-      //d.querySelector(`[data-header-inicio]`).classList.remove("d-block");
-      //d.querySelector(`[data-header-inicio]`).classList.add("d-none");
-
+    if (proyectos.datos.length > 0) {
       const datosHeader = proyectos.obtenerObjetoId(proyectos.idProyectoVista);
 
       this.$templateProyectosHeader.querySelector("h2").textContent =
@@ -120,41 +94,53 @@ class Display {
   }
 
   renderMainHeader() {
-    if (proyectos.datos.length === 0) {
-      d.querySelector(`[data-main-inicio]`).classList.add("d-block");
-    } else {
-      d.querySelector(`[data-main-inicio]`).classList.remove("d-block");
-      d.querySelector(`[data-main-inicio]`).classList.add("d-none");
-
-      this.$mainProyectos.appendChild(this.$templateProyectosMainHeader);
+    if (proyectos.datos.length > 0) {
+      console.log(this.$templateProyectosMainHeader);
+      this.$mainProyectos.appendChild(
+        this.$templateProyectosMainHeader.cloneNode(true)
+      );
     }
   }
 
   limpiarMainHeader() {
     this.$headerProyectos.firstChild.innerHTML = "";
   }
-  /*
+
   renderMainBody() {
-    const objetoEncontrado = proyectos.obtenerObjetoId(proyectos.obtenerId());
+    if (proyectos.datos.length > 0) {
+      const objetoEncontrado = proyectos.obtenerObjetoId(
+        proyectos.idProyectoVista
+      );
 
-    objetoEncontrado.tareas.forEach((el) => {
-      this.$templateProyectosMainBody.querySelector(
-        "[data-titulo]"
-      ).textContent = el.titulo;
+      objetoEncontrado.tareas.forEach((el) => {
+        this.$templateProyectosMainBody.querySelector("tr").dataset.idProyecto =
+          proyectos.idProyectoVista;
 
-      let clone = this.$templateProyectosMainBody.cloneNode(true);
+        this.$templateProyectosMainBody.querySelector("tr").dataset.idTarea =
+          el.id;
 
-      this.$fragment.appendChild(clone);
-    });
+        this.$templateProyectosMainBody.querySelector(
+          "[data-titulo]"
+        ).textContent = el.titulo;
 
-    this.$mainProyectos.appendChild(this.$fragment);
+        let clone = this.$templateProyectosMainBody.cloneNode(true);
+
+        this.$fragment.appendChild(clone);
+      });
+
+      d.querySelector(`[data-tbody]`).appendChild(this.$fragment);
+    }
   }
-*/
+
+  limpiarMainBody() {
+    d.querySelector(`[data-tbody]`).innerHTML = "";
+  }
+
   render() {
     this.renderProyectos();
     this.renderHeader();
     this.renderMainHeader();
-    //this.renderMainBody();
+    this.renderMainBody();
   }
 
   crearFormProyecto() {
@@ -164,6 +150,16 @@ class Display {
 
     this.$formProyecto.querySelector("#tituloProyecto").value = "";
     this.$formProyecto.querySelector("#descripcionProyecto").value = "";
+  }
+  crearFormTarea() {
+    this.$formTarea.dataset.idProyecto = proyectos.idProyectoVista;
+    this.$formTarea.dataset.method = "crear";
+    this.$formTarea.querySelector("h2").textContent = `Crear Tarea`;
+    this.$formTarea.querySelector("button").textContent = `Crear Tarea`;
+
+    this.$formTarea.querySelector("#tituloTarea").value = "";
+    this.$formTarea.querySelector("#descripcionTarea").value = "";
+    this.$formTarea.querySelector("#fechaInput").value = "";
   }
 
   editarFormProyecto(id) {
@@ -197,6 +193,13 @@ class Display {
     this.$dialogCrearProyecto.close();
   }
 
+  abrirModalTarea() {
+    this.$dialogCrearTarea.showModal();
+  }
+  cerrarModalTarea() {
+    this.$dialogCrearTarea.close();
+  }
+
   capturarLinksProyectos() {
     this.$linksProyectos = Array.from(
       d.querySelectorAll(`[data-id-proyecto-vista]`)
@@ -209,6 +212,31 @@ class Display {
     this.$btnsBorrarProyecto = Array.from(
       d.querySelectorAll(`[data-btn="deleteProyecto"]`)
     );
+  }
+  capturarBtnCrearTarea() {
+    this.$btnAddTarea = d.querySelector(`[data-btn="addTarea"]`);
+  }
+
+  capturarInputsCheckbox() {
+    this.$inputsCheckbox = Array.from(d.querySelectorAll('input[type="checkbox"]'));
+  }
+
+  agregarMensajeHeader() {
+    this.$headerProyectos.innerHTML = `<p data-header-inicio="" class="d-block">
+            Crea un nuevo proyecto para comenzar
+          </p>`;
+  }
+
+  eliminarMensajeHeader() {
+    this.$headerProyectos.innerHTML = "";
+  }
+  eliminarMensajeMain() {
+    this.$mainProyectos.innerHTML = "";
+  }
+  agregarMensajeMain() {
+    this.$mainProyectos.innerHTML = `<p data-main-inicio="" class="d-block">
+            Aca apareceran las tareas de cada proyecto
+          </p>`;
   }
 }
 

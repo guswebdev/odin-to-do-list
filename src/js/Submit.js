@@ -23,13 +23,16 @@ class Submit {
     display.limpiarProyectos();
     display.renderProyectos();
 
+    display.eliminarMensajeHeader();
     display.limpiarHeader();
     display.renderHeader();
-    console.log(proyectos.datos);
+
+    display.eliminarMensajeMain();
+    display.renderMainHeader();
+    display.renderMainBody();
   }
 
   editarProyecto(id) {
-
     const formData = new FormData(display.$formProyecto);
     const data = Object.fromEntries(formData);
 
@@ -47,6 +50,31 @@ class Submit {
     display.renderHeader();
     console.log(proyectos.datos);
   }
+  crearTarea(id) {
+    const formData = new FormData(display.$formTarea);
+    const data = Object.fromEntries(formData);
+
+    console.log(data);
+
+    const nuevaTarea = crearTarea(
+      data.tituloTarea,
+      data.descripcionTarea,
+      data.formPrioridad,
+      data.fechaInput
+    );
+
+    proyectos.agregarProyectoTareas(nuevaTarea, id);
+    console.log(proyectos.datos);
+
+    display.cerrarModalTarea();
+    display.reiniciarFormTarea();
+
+    display.limpiarMainBody()
+    display.renderMainBody()
+
+    display.capturarInputsCheckbox()
+  }
+  editarTarea() {}
 }
 
 const submit = new Submit();
