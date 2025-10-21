@@ -69,12 +69,25 @@ class Submit {
     display.cerrarModalTarea();
     display.reiniciarFormTarea();
 
-    display.limpiarMainBody()
-    display.renderMainBody()
+    display.limpiarMainBody();
+    display.renderMainBody();
 
-    display.capturarInputsCheckbox()
+    display.capturarInputsCheckbox();
   }
-  editarTarea() {}
+  editarTarea(idProyecto, idTarea) {
+    const formData = new FormData(display.$formTarea);
+    const data = Object.fromEntries(formData);
+
+    proyectos.editarProyectoTareas(data, idProyecto, idTarea);
+
+    proyectos.idProyectoVista = idProyecto;
+
+    display.cerrarModalTarea();
+    display.reiniciarFormTarea();
+
+    display.limpiarMainBody();
+    display.renderMainBody();
+  }
 }
 
 const submit = new Submit();

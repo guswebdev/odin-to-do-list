@@ -8,8 +8,6 @@ import { crearTarea } from "./crearTarea.js";
 
 class Controlador {
   domContentLoaded() {
-    console.log(proyectos.datos);
-
     display.render();
   }
 
@@ -25,12 +23,17 @@ class Controlador {
     if (e.target.dataset.btn === display.$btnCerrarModalTarea.dataset.btn) {
       click.cerrarModalTarea();
     }
+    if (e.target.dataset.btn === display.$btnCerrarModalInfoTarea.dataset.btn) {
+      click.cerrarInfoTarea();
+    }
 
     if (proyectos.datos.length > 0) {
       display.capturarLinksProyectos();
       display.capturarBtnEditarProyecto();
       display.capturarBtnBorrarProyecto();
       display.capturarBtnCrearTarea();
+      display.capturarBtnsVerTarea();
+      display.capturarBtnsEditarTarea()
 
       if (display.$linksProyectos.includes(e.target)) {
         click.cambiarHeader(e.target.dataset.idProyecto);
@@ -45,6 +48,19 @@ class Controlador {
 
       if (e.target.dataset.btn === display.$btnAddTarea.dataset.btn) {
         click.crearTarea(e.target.dataset.idProyecto);
+      }
+
+      if (display.$btnsVerTarea.includes(e.target)) {
+        click.verTarea(
+          e.target.closest("tr").dataset.idProyecto,
+          e.target.closest("tr").dataset.idTarea
+        );
+      }
+      if (display.$btnsEditTarea.includes(e.target)) {
+        click.editarTarea(
+          e.target.closest("tr").dataset.idProyecto,
+          e.target.closest("tr").dataset.idTarea
+        );
       }
     }
   }
@@ -63,7 +79,7 @@ class Controlador {
       if (display.$formTarea.dataset.method === "crear") {
         submit.crearTarea(e.target.dataset.idProyecto);
       } else if (display.$formTarea.dataset.method === "editar") {
-        submit.editarTarea(e.target.dataset.idProyecto);
+        submit.editarTarea(e.target.dataset.idProyecto,e.target.dataset.idTarea);
       }
     }
   }

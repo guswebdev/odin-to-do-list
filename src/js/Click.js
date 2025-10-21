@@ -43,10 +43,24 @@ class Click {
   cerrarModalTarea() {
     display.cerrarModalTarea();
   }
+  cerrarInfoTarea() {
+    display.cerrarInfoTarea();
+  }
 
   crearTarea() {
     console.log("CREAR TAREA");
     display.crearFormTarea();
+    display.abrirModalTarea();
+  }
+
+  verTarea(idProyecto, idTarea) {
+    console.log("VER INFORMACION TAREA");
+    display.cargarInformacionTarea(idProyecto, idTarea);
+    display.abrirInfoTarea();
+  }
+
+  editarTarea(idProyecto, idTarea) {
+    display.editarFormTarea(idProyecto, idTarea);
     display.abrirModalTarea();
   }
 }

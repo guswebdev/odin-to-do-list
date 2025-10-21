@@ -38,20 +38,10 @@ class Data {
   }
 
   asignarDatosTareas(dato, datoNuevo) {
-    dato.titulo = datoNuevo.titulo;
-    dato.descripcion = datoNuevo.descripcion;
-    dato.prioridad = datoNuevo.prioridad;
-    dato.fechaVencimiento = datoNuevo.fechaVencimiento;
-  }
-
-  //Metodo Auxiliar
-  /*
-  obtenerId() {
-    return this.datos[0].id;
-  }
-  */
-  obtenerIdTarea() {
-    return this.datos[0].tareas[0].id;
+    dato.titulo = datoNuevo.tituloTarea;
+    dato.descripcion = datoNuevo.descripcionTarea;
+    dato.prioridad = datoNuevo.formPrioridad;
+    dato.fechaVencimiento = datoNuevo.fechaInput;
   }
 
   //Metodos Publicos

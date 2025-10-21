@@ -133,32 +133,27 @@
           <article class="container-info-tarea flex-columna">
             <p>
               Titulo:
-              <span>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-              </span>
+              <span data-info-titulo> </span>
             </p>
             <p>
               Descripcion:
-              <span>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam
-                saepe explicabo asperiores ratione quis sapiente!
-              </span>
+              <span data-info-descripcion> </span>
             </p>
             <p>
               Prioridad:
-              <span> Media </span>
+              <span data-info-prioridad></span>
             </p>
             <p>
               Fecha de Vencimiento:
-              <span> 16/11/2025 </span>
+              <span data-info-fecha></span>
             </p>
             <p>
               Estado:
-              <span> Tarea Incompleta </span>
+              <span data-info-estado></span>
             </p>
             <p>
               Proyecto:
-              <span> Proyecto Default </span>
+              <span data-info-proyecto></span>
             </p>
           </article>
         </dialog>
@@ -200,28 +195,22 @@
       </table>
     </template>
     <template id="template-proyectos-main-body">
-      
-          <tr>
-            <td>
-              <input
-                type="checkbox"
-                name="proyecto-estado"
-                id="proyecto-estado"
-              />
-            </td>
-            <td class="tarea-titulo" data-titulo></td>
+      <tr>
+        <td>
+          <input type="checkbox" name="proyecto-estado" id="proyecto-estado" />
+        </td>
+        <td class="tarea-titulo" data-titulo></td>
 
-            <td>
-              <i class="fa-solid fa-eye" data-btn="viewTarea"></i>
-            </td>
-            <td>
-              <i class="fa-solid fa-pen-to-square" data-btn="editTarea"></i>
-            </td>
-            <td>
-              <i class="fa-solid fa-trash" data-btn="deleteTarea"></i>
-            </td>
-          </tr>
-        
+        <td>
+          <i class="fa-solid fa-eye" data-btn="viewTarea"></i>
+        </td>
+        <td>
+          <i class="fa-solid fa-pen-to-square" data-btn="editTarea"></i>
+        </td>
+        <td>
+          <i class="fa-solid fa-trash" data-btn="deleteTarea"></i>
+        </td>
+      </tr>
     </template>
   </body>
 </html>

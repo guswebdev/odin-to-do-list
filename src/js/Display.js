@@ -13,10 +13,32 @@ class Display {
   $linksProyectos;
   $btnEditProyecto;
   $btnsBorrarProyecto;
+  $btnAddTarea;
+  $btnsVerTarea;
+  $inputsCheckbox;
+
   $btnAddProyecto = d.querySelector(`[data-btn="addProyecto"]`);
   $btnCerrarModalProyecto = d.querySelector(`[data-btn="cerrarModalProyecto"]`);
   $btnCerrarModalTarea = d.querySelector(`[data-btn="cerrarModalTarea"]`);
-  $inputsCheckbox;
+  $dialogCrearProyecto = d.querySelector(`[data-dialog="crearProyecto"]`);
+  $dialogCrearTarea = d.querySelector(`[data-dialog="crearTarea"]`);
+  $spanTituloTarea = d.querySelector(`[data-info-titulo]`);
+  $spanDescripcionTarea = d.querySelector(`[data-info-descripcion]`);
+  $spanPrioridadTarea = d.querySelector(`[data-info-prioridad]`);
+  $spanFechaTarea = d.querySelector(`[data-info-fecha]`);
+  $spanEstadoTarea = d.querySelector(`[data-info-estado]`);
+  $spanProyectoTarea = d.querySelector(`[data-info-proyecto]`);
+  $spanTituloTarea = d.querySelector(`[data-info-titulo]`);
+  $spanDescripcionTarea = d.querySelector(`[data-info-descripcion]`);
+  $spanPrioridadTarea = d.querySelector(`[data-info-prioridad]`);
+  $spanFechaTarea = d.querySelector(`[data-info-fecha]`);
+  $spanEstadoTarea = d.querySelector(`[data-info-estado]`);
+  $spanProyectoTarea = d.querySelector(`[data-info-proyecto]`);
+
+  $dialogVerTarea = d.querySelector(`[data-dialog="verTarea"]`);
+  $btnCerrarModalInfoTarea = d.querySelector(
+    `[data-btn="cerrarModalInfoTarea"]`
+  );
 
   $templateProyectosItems = d.querySelector("#template-proyectos-items")
     .content;
@@ -31,17 +53,8 @@ class Display {
   $fragment = d.createDocumentFragment();
   //Atributos
 
-  $dialogCrearProyecto = d.querySelector(`[data-dialog="crearProyecto"]`);
-  $dialogCrearTarea = d.querySelector(`[data-dialog="crearTarea"]`);
-  $btnAddTarea;
-
-  $btnEditTarea;
-  $btnDeleteTarea;
-  $btnViewTarea;
-  $dialogVerTarea = d.querySelector(`[data-dialog="verTarea"]`);
-  $btnCerrarModalInfoTarea = d.querySelector(
-    `[data-btn="cerrarModalInfoTarea"]`
-  );
+  $btnsEditTarea;
+  $btnsDeleteTarea;
 
   //Metodos Publicos
   renderProyectos() {
@@ -179,6 +192,26 @@ class Display {
       datosFormulario.descripcion;
   }
 
+  editarFormTarea(idProyecto, idTarea) {
+    this.$formTarea.dataset.method = "editar";
+    this.$formTarea.dataset.idProyecto = idProyecto;
+    this.$formTarea.dataset.idTarea = idTarea;
+
+    this.$formTarea.querySelector("h2").textContent = `Editar Tarea`;
+    this.$formTarea.querySelector("button").textContent = `Editar Tarea`;
+
+    const proyecto = proyectos.obtenerObjetoId(idProyecto);
+    const tarea = proyectos.obtenerTareaId(proyecto.tareas, idTarea);
+
+    this.$formTarea.querySelector("#tituloTarea").value = tarea.titulo;
+    this.$formTarea.querySelector("#descripcionTarea").value =
+      tarea.descripcion;
+    this.$formTarea.querySelector(
+      `input[value="${tarea.prioridad}"]`
+    ).checked = true;
+    this.$formTarea.querySelector("#fechaInput").value = tarea.fechaVencimiento;
+  }
+
   reiniciarFormProyecto() {
     this.$formProyecto.reset();
   }
@@ -200,6 +233,13 @@ class Display {
     this.$dialogCrearTarea.close();
   }
 
+  abrirInfoTarea() {
+    this.$dialogVerTarea.showModal();
+  }
+  cerrarInfoTarea() {
+    this.$dialogVerTarea.close();
+  }
+
   capturarLinksProyectos() {
     this.$linksProyectos = Array.from(
       d.querySelectorAll(`[data-id-proyecto-vista]`)
@@ -218,7 +258,20 @@ class Display {
   }
 
   capturarInputsCheckbox() {
-    this.$inputsCheckbox = Array.from(d.querySelectorAll('input[type="checkbox"]'));
+    this.$inputsCheckbox = Array.from(
+      d.querySelectorAll('input[type="checkbox"]')
+    );
+  }
+  capturarBtnsVerTarea() {
+    this.$btnsVerTarea = Array.from(
+      d.querySelectorAll(`[data-btn="viewTarea"]`)
+    );
+  }
+
+  capturarBtnsEditarTarea() {
+    this.$btnsEditTarea = Array.from(
+      d.querySelectorAll(`[data-btn="editTarea"]`)
+    );
   }
 
   agregarMensajeHeader() {
@@ -237,6 +290,21 @@ class Display {
     this.$mainProyectos.innerHTML = `<p data-main-inicio="" class="d-block">
             Aca apareceran las tareas de cada proyecto
           </p>`;
+  }
+
+  cargarInformacionTarea(idProyecto, idTarea) {
+    const proyecto = proyectos.obtenerObjetoId(idProyecto);
+
+    const tarea = proyectos.obtenerTareaId(proyecto.tareas, idTarea);
+
+    this.$spanTituloTarea.textContent = tarea.titulo;
+    this.$spanDescripcionTarea.textContent = tarea.descripcion;
+    this.$spanPrioridadTarea.textContent = tarea.prioridad;
+    this.$spanFechaTarea.textContent = tarea.fechaVencimiento;
+    this.$spanEstadoTarea.textContent = tarea.estado
+      ? `Tarea Completa`
+      : `Tarea Incompleta`;
+    this.$spanProyectoTarea.textContent = proyecto.titulo;
   }
 }
 
