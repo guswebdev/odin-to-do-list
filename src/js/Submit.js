@@ -5,8 +5,7 @@ import { display } from "./Display.js";
 
 class Submit {
   crearProyecto() {
-    const formData = new FormData(display.$formProyecto);
-    const data = Object.fromEntries(formData);
+    const data = display.obtenerDatosFormulario(display.$formProyecto);
 
     const nuevoProyecto = crearProyecto(
       data.tituloProyecto,
@@ -14,14 +13,11 @@ class Submit {
     );
 
     proyectos.idProyectoVista = nuevoProyecto.id;
+    proyectos.guardarIdVista();
 
     proyectos.agregarProyectos(nuevoProyecto);
 
-    display.cerrarModalProyecto();
-    display.reiniciarFormProyecto();
-
-    display.limpiarProyectos();
-    display.renderProyectos();
+    display.resetFormProyecto();
 
     display.eliminarMensajeHeader();
     display.limpiarHeader();
@@ -33,29 +29,20 @@ class Submit {
   }
 
   editarProyecto(id) {
-    const formData = new FormData(display.$formProyecto);
-    const data = Object.fromEntries(formData);
+    const data = display.obtenerDatosFormulario(display.$formProyecto);
 
     proyectos.editarProyectos(data, id);
 
     proyectos.idProyectoVista = id;
+    proyectos.guardarIdVista();
 
-    display.cerrarModalProyecto();
-    display.reiniciarFormProyecto();
-
-    display.limpiarProyectos();
-    display.renderProyectos();
+    display.resetFormProyecto();
 
     display.limpiarHeader();
     display.renderHeader();
-    console.log(proyectos.datos);
   }
   crearTarea(id) {
-    const formData = new FormData(display.$formTarea);
-    const data = Object.fromEntries(formData);
-
-    console.log(data);
-
+    const data = display.obtenerDatosFormulario(display.$formTarea);
     const nuevaTarea = crearTarea(
       data.tituloTarea,
       data.descripcionTarea,
@@ -64,29 +51,20 @@ class Submit {
     );
 
     proyectos.agregarProyectoTareas(nuevaTarea, id);
-    console.log(proyectos.datos);
 
-    display.cerrarModalTarea();
-    display.reiniciarFormTarea();
-
-    display.limpiarMainBody();
-    display.renderMainBody();
+    display.resetFormTarea();
 
     display.capturarInputsCheckbox();
   }
   editarTarea(idProyecto, idTarea) {
-    const formData = new FormData(display.$formTarea);
-    const data = Object.fromEntries(formData);
+    const data = display.obtenerDatosFormulario(display.$formTarea);
 
     proyectos.editarProyectoTareas(data, idProyecto, idTarea);
 
     proyectos.idProyectoVista = idProyecto;
+    proyectos.guardarIdVista();
 
-    display.cerrarModalTarea();
-    display.reiniciarFormTarea();
-
-    display.limpiarMainBody();
-    display.renderMainBody();
+    display.resetFormTarea();
   }
 }
 

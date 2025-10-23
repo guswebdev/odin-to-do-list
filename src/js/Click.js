@@ -8,7 +8,9 @@ class Click {
   }
 
   cambiarHeader(id) {
+    
     proyectos.idProyectoVista = id;
+    proyectos.guardarIdVista()
 
     display.limpiarHeader();
     display.renderHeader();
@@ -24,7 +26,7 @@ class Click {
 
   borrarProyecto(id) {
     proyectos.eliminarProyecto(id);
-    console.log(proyectos.datos);
+
     display.limpiarProyectos();
     display.renderProyectos();
 
@@ -35,6 +37,9 @@ class Click {
     } else {
       display.limpiarHeader();
       display.renderHeader();
+
+      display.limpiarMainBody();
+      display.renderMainBody();
     }
   }
   cerrarModalProyecto() {
@@ -48,13 +53,11 @@ class Click {
   }
 
   crearTarea() {
-    console.log("CREAR TAREA");
     display.crearFormTarea();
     display.abrirModalTarea();
   }
 
   verTarea(idProyecto, idTarea) {
-    console.log("VER INFORMACION TAREA");
     display.cargarInformacionTarea(idProyecto, idTarea);
     display.abrirInfoTarea();
   }
@@ -62,6 +65,13 @@ class Click {
   editarTarea(idProyecto, idTarea) {
     display.editarFormTarea(idProyecto, idTarea);
     display.abrirModalTarea();
+  }
+
+  borrarTarea(idProyecto, idTarea) {
+    proyectos.eliminarProyectoTareas(idProyecto, idTarea);
+
+    display.limpiarMainBody();
+    display.renderMainBody();
   }
 }
 

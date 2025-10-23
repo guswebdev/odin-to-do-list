@@ -1,18 +1,28 @@
 import { display } from "./Display.js";
 import { click } from "./Click.js";
 import { submit } from "./Submit.js";
-
 import { proyectos } from "./Data.js";
-import { crearProyecto } from "./crearProyecto.js";
-import { crearTarea } from "./crearTarea.js";
+import { ls } from "./LocalStorage.js";
+
+/*
+Tareas Pendientes: 
+-Trabajar bien con las fechas
+-Trabajar con los input de checklist
+*/
 
 class Controlador {
   domContentLoaded() {
-    display.render();
+    ls.crearDatos();
+
+    if (proyectos.datos.length > 0) {
+      display.eliminarMensajeHeader();
+      display.eliminarMensajeMain();
+
+      display.render();
+    }
   }
 
   click(e) {
-    //console.log(e.target);
     if (e.target.dataset.btn === display.$btnAddProyecto.dataset.btn) {
       click.crearProyecto();
     }
@@ -33,7 +43,8 @@ class Controlador {
       display.capturarBtnBorrarProyecto();
       display.capturarBtnCrearTarea();
       display.capturarBtnsVerTarea();
-      display.capturarBtnsEditarTarea()
+      display.capturarBtnsEditarTarea();
+      display.capturarBtnsBorrarTarea();
 
       if (display.$linksProyectos.includes(e.target)) {
         click.cambiarHeader(e.target.dataset.idProyecto);
@@ -62,11 +73,18 @@ class Controlador {
           e.target.closest("tr").dataset.idTarea
         );
       }
+      if (display.$btnsBorrarTarea.includes(e.target)) {
+        click.borrarTarea(
+          e.target.closest("tr").dataset.idProyecto,
+          e.target.closest("tr").dataset.idTarea
+        );
+      }
     }
   }
 
   submit(e) {
     e.preventDefault();
+
     if (e.target === display.$formProyecto) {
       if (display.$formProyecto.dataset.method === "crear") {
         submit.crearProyecto();
@@ -79,7 +97,10 @@ class Controlador {
       if (display.$formTarea.dataset.method === "crear") {
         submit.crearTarea(e.target.dataset.idProyecto);
       } else if (display.$formTarea.dataset.method === "editar") {
-        submit.editarTarea(e.target.dataset.idProyecto,e.target.dataset.idTarea);
+        submit.editarTarea(
+          e.target.dataset.idProyecto,
+          e.target.dataset.idTarea
+        );
       }
     }
   }

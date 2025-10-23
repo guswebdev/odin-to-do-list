@@ -1,3 +1,5 @@
+import { ls } from "./LocalStorage.js";
+
 class Data {
   //Atributos
   datos = [];
@@ -23,10 +25,14 @@ class Data {
   //Metodos Privados
 
   obtenerObjetoId(id) {
+    ls.recuperarDatos();
+    ls.recuperarIdVista();
+
     return this.datos.find((objeto) => objeto.id === id);
   }
 
   obtenerIndexObjetoId(id) {
+    ls.recuperarDatos();
     return this.datos.findIndex((objeto) => objeto.id === id);
   }
 
@@ -48,6 +54,7 @@ class Data {
 
   agregarProyectos(dato) {
     this.datos.push(dato);
+    ls.guardarDatos();
   }
 
   editarProyectos(dato, id) {
@@ -57,6 +64,8 @@ class Data {
       this.datos[index].titulo = dato.tituloProyecto;
       this.datos[index].descripcion = dato.descripcionProyecto;
     }
+
+    ls.guardarDatos();
   }
 
   eliminarProyecto(id) {
@@ -64,11 +73,14 @@ class Data {
 
     if (this.datos.length > 1) {
       this.idProyectoVista = this.datos[index - 1].id;
+      ls.guardarIdVista();
     }
 
     if (index > -1) {
       this.datos.splice(index, 1);
     }
+
+    ls.guardarDatos();
   }
 
   agregarProyectoTareas(dato, idProyecto) {
@@ -77,21 +89,8 @@ class Data {
     if (objetoEncontrado) {
       objetoEncontrado.tareas.push(dato);
     }
-  }
 
-  mostrarProyectoTareas(idProyecto, idTarea) {
-    const objetoEncontrado = this.obtenerObjetoId(idProyecto);
-
-    if (objetoEncontrado) {
-      const elementoEncontrado = this.obtenerTareaId(
-        objetoEncontrado.tareas,
-        idTarea
-      );
-
-      if (elementoEncontrado) {
-        console.dir(elementoEncontrado);
-      }
-    }
+    ls.guardarDatos();
   }
 
   editarProyectoTareas(dato, idProyecto, idTarea) {
@@ -107,6 +106,8 @@ class Data {
         this.asignarDatosTareas(elementoEncontrado, dato);
       }
     }
+
+    ls.guardarDatos();
   }
   eliminarProyectoTareas(idProyecto, idTarea) {
     const objetoEncontrado = this.obtenerObjetoId(idProyecto);
@@ -117,6 +118,8 @@ class Data {
         objetoEncontrado.tareas.splice(index, 1);
       }
     }
+
+    ls.guardarDatos();
   }
 
   cambiarEstado(idProyecto, idTarea) {
@@ -133,6 +136,12 @@ class Data {
         elementoEncontrado.estado = !elementoEncontrado.estado;
       }
     }
+
+    ls.guardarDatos();
+  }
+
+  guardarIdVista() {
+    ls.guardarIdVista();
   }
 }
 

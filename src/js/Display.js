@@ -1,3 +1,4 @@
+import { format } from "date-fns";
 import { proyectos } from "./Data.js";
 
 const d = document;
@@ -54,7 +55,7 @@ class Display {
   //Atributos
 
   $btnsEditTarea;
-  $btnsDeleteTarea;
+  $btnsBorrarTarea;
 
   //Metodos Publicos
   renderProyectos() {
@@ -108,7 +109,6 @@ class Display {
 
   renderMainHeader() {
     if (proyectos.datos.length > 0) {
-      console.log(this.$templateProyectosMainHeader);
       this.$mainProyectos.appendChild(
         this.$templateProyectosMainHeader.cloneNode(true)
       );
@@ -184,8 +184,6 @@ class Display {
 
     const datosFormulario = proyectos.obtenerObjetoId(id);
 
-    console.log(datosFormulario);
-
     this.$formProyecto.querySelector("#tituloProyecto").value =
       datosFormulario.titulo;
     this.$formProyecto.querySelector("#descripcionProyecto").value =
@@ -209,7 +207,8 @@ class Display {
     this.$formTarea.querySelector(
       `input[value="${tarea.prioridad}"]`
     ).checked = true;
-    this.$formTarea.querySelector("#fechaInput").value = tarea.fechaVencimiento;
+    this.$formTarea.querySelector("#fechaInput").value =
+      tarea.fechaVencimiento.replaceAll("/", "-");
   }
 
   reiniciarFormProyecto() {
@@ -274,6 +273,12 @@ class Display {
     );
   }
 
+  capturarBtnsBorrarTarea() {
+    this.$btnsBorrarTarea = Array.from(
+      d.querySelectorAll(`[data-btn="deleteTarea"]`)
+    );
+  }
+
   agregarMensajeHeader() {
     this.$headerProyectos.innerHTML = `<p data-header-inicio="" class="d-block">
             Crea un nuevo proyecto para comenzar
@@ -305,6 +310,25 @@ class Display {
       ? `Tarea Completa`
       : `Tarea Incompleta`;
     this.$spanProyectoTarea.textContent = proyecto.titulo;
+  }
+
+  resetFormProyecto() {
+    this.cerrarModalProyecto();
+    this.reiniciarFormProyecto();
+
+    this.limpiarProyectos();
+    this.renderProyectos();
+  }
+  resetFormTarea() {
+    this.cerrarModalTarea();
+    this.reiniciarFormTarea();
+
+    this.limpiarMainBody();
+    this.renderMainBody();
+  }
+
+  obtenerDatosFormulario(form) {
+    return Object.fromEntries(new FormData(form));
   }
 }
 
